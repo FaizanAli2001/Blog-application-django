@@ -32,4 +32,9 @@ def post_like(request, pk):
     post.save()
     return redirect('detail', pk=pk)
 
+
+def search(request):
+    query = request.GET.get('q','')
+    results = Blog.objects.filter(title__icontains=query)
+    return render(request, 'search.html', {'query':query, 'results':results})
  
