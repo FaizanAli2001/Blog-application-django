@@ -25,3 +25,11 @@ def blog_detail(request, pk):
     else:
             form = CommentForm()
     return render(request, 'detail.html', {'posts':posts, 'form':form, 'comments':comments})
+
+def post_like(request, pk):
+    post = get_object_or_404(Blog, pk=pk)
+    post.likes +=1
+    post.save()
+    return redirect('detail', pk=pk)
+
+ 
